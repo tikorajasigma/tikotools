@@ -21,11 +21,23 @@ async function sendMessage() {
             })
         });
 
+        console.log("Status HTTP:", response.status); // Debugging status HTTP
+
+        if (!response.ok) {
+            throw new Error(`Server mengembalikan status: ${response.status}`);
+        }
+
         const data = await response.json();
-        const botReply = data.choices[0].message.content;
-        appendMessage("AI", botReply);
+        console.log("Respon API:", data); // Debugging respon API
+
+        if (data.choices && data.choices.length > 0) {
+            appendMessage("AI", data.choices[0].message.content);
+        } else {
+            appendMessage("AI", "AI tidak memberikan respon yang valid.");
+        }
     } catch (error) {
-        appendMessage("AI", "Terjadi kesalahan, coba lagi nanti.");
+        console.error("Terjadi error:", error); // Debugging error
+        appendMessage("AI", `Terjadi kesalahan: ${error.message}`);
     }
 }
 
