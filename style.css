@@ -10,29 +10,34 @@ body {
     overflow: hidden; /* Mencegah scroll halaman */
 }
 
-/* Chat container sekarang memenuhi layar */
+/* Chat container dengan ukuran tetap dan padding yang lebih sedikit */
 .chat-container {
-    width: 100vw;
-    height: 100vh;
+    width: 90vw; /* Lebih luas */
+    max-width: 450px; /* Tidak terlalu besar di layar lebar */
+    height: 85vh; /* Lebih luas tapi tetap ada batas */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
-/* Header dengan jarak aman dari notch */
+/* Header dengan padding sedikit */
 h2 {
     text-align: center;
     color: white;
-    padding: 15px;
+    padding: 12px;
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
-    padding-top: env(safe-area-inset-top, 15px); /* Menyesuaikan dengan notch HP */
+    border-radius: 10px 10px 0 0; /* Sudut atas rounded */
 }
 
 /* Chat box dengan scroll */
 .chat-box {
     flex-grow: 1;
-    padding: 15px;
+    padding: 10px; /* Padding lebih kecil */
     overflow-y: auto; /* Bisa di-scroll jika penuh */
     display: flex;
     flex-direction: column;
@@ -40,68 +45,68 @@ h2 {
 
 /* Gaya pesan */
 .message {
-    padding: 10px 15px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    max-width: 80%;
     word-wrap: break-word;
 }
 
 .user-message {
-    background: rgba(255, 255, 255, 0.3); /* Putih transparan */
+    background: #007BFF;
     color: white;
     align-self: flex-end;
 }
 
 .bot-message {
-    background: rgba(0, 0, 0, 0.2); /* Hitam transparan */
-    color: white;
+    background: #E0F7FA; /* Biru muda (cyan) */
+    color: black;
     align-self: flex-start;
 }
 
-/* Bagian input tetap di bawah dengan jarak aman */
+/* Bagian input tetap di bawah */
 .input-container {
     display: flex;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
-    padding-bottom: env(safe-area-inset-bottom, 15px); /* Menyesuaikan dengan navigasi HP */
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.1); /* Transparan gelap */
+    border-radius: 0 0 10px 10px; /* Sudut bawah rounded */
 }
 
-/* Perbaikan warna teks input */
+/* Input lebih terlihat */
 input {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
     border: none;
     outline: none;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.2); /* Transparan */
-    color: white; /* Warna teks putih solid */
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.05); /* Sedikit transparan */
+    color: black;
     font-size: 16px;
     padding-left: 15px;
 }
 
 /* Warna placeholder */
 input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.5);
 }
 
 /* Tambahkan efek saat input difokuskan */
 input:focus {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 /* Tombol */
 button {
-    background: rgba(255, 255, 255, 0.3);
+    background: #007BFF;
     color: white;
     border: none;
-    padding: 12px 20px;
+    padding: 10px 16px;
     cursor: pointer;
-    border-radius: 25px;
-    margin-left: 10px;
+    border-radius: 20px;
+    margin-left: 8px;
     font-size: 16px;
 }
 
 button:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: #0056b3;
 }
