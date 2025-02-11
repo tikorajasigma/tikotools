@@ -38,3 +38,20 @@ button {
     border: none;
     cursor: pointer;
 }
+
+/* Styling Debugging */
+.debug-container {
+    margin-top: 20px;
+    text-align: left;
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+#debug-box {
+    font-size: 12px;
+    white-space: pre-wrap;
+    background: #fafafa;
+    padding: 5px;
+    border-radius: 3px;
+}
