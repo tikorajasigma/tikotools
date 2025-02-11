@@ -1,5 +1,5 @@
-const API_KEY = "sk-1d165ea1b37d4205a5c3ba5c370efd58"; // Ganti dengan API Key Anda
-const API_URL = "https://api.deepseek.com/v1/chat/completions";
+const API_KEY = "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"; // Ganti dengan API Key Anda
+const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 async function sendMessage() {
     let userInput = document.getElementById("user-input").value;
@@ -16,7 +16,7 @@ async function sendMessage() {
                 "Authorization": `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: "deepseek-chat",
+                model: "mistral-7b",
                 messages: [{ role: "user", content: userInput }]
             })
         });
