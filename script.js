@@ -10,6 +10,7 @@ async function sendMessage() {
     // Tampilkan pesan pengguna
     chatbox.innerHTML += `<p><strong>Anda:</strong> ${userMessage}</p>`;
     userInput.value = "";
+    chatbox.scrollTop = chatbox.scrollHeight;
 
     try {
         const response = await fetch("https://api.together.xyz/v1/chat/completions", {
@@ -32,6 +33,8 @@ async function sendMessage() {
         } else {
             chatbox.innerHTML += `<p><strong>Bot:</strong> Maaf, saya tidak dapat merespons saat ini.</p>`;
         }
+
+        chatbox.scrollTop = chatbox.scrollHeight;
     } catch (error) {
         console.error("Error:", error);
         chatbox.innerHTML += `<p><strong>Bot:</strong> Terjadi kesalahan, coba lagi nanti.</p>`;
