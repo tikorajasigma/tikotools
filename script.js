@@ -1,42 +1,44 @@
-const API_KEY = "33428e555143e8d4f9c3fecf00628a4e98bd57c6b45bf6b2c3bb201c87b6b5e7"; // Ganti dengan API key milikmu
+const API_KEY = "33428e555143e8d4f9c3fecf00628a4e98bd57c6b45bf6b2c3bb201c87b6b5e7";
+const MODEL = "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"; 
 
 async function sendMessage() {
-    const userInput = document.getElementById("userInput");
-    const chatbox = document.getElementById("chatbox");
-    const userMessage = userInput.value.trim();
+    const userInput = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
 
-    if (!userMessage) return;
+    if (!userInput.value.trim()) return;
 
     // Tampilkan pesan pengguna
-    chatbox.innerHTML += `<p><strong>Anda:</strong> ${userMessage}</p>`;
+    chatBox.innerHTML += `<div><strong>Anda:</strong> ${userInput.value}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    const userMessage = userInput.value;
     userInput.value = "";
-    chatbox.scrollTop = chatbox.scrollHeight;
 
     try {
         const response = await fetch("https://api.together.xyz/v1/chat/completions", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${API_KEY}`,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
-                model: "mistralai/mistral-7b-instruct", // Model gratis di Together AI
+                model: MODEL,
                 messages: [{ role: "user", content: userMessage }]
             })
         });
 
         const data = await response.json();
+        const botReply = data.choices[0].message.content;
 
-        if (data.choices && data.choices.length > 0) {
-            const botReply = data.choices[0].message.content;
-            chatbox.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
-        } else {
-            chatbox.innerHTML += `<p><strong>Bot:</strong> Maaf, saya tidak dapat merespons saat ini.</p>`;
-        }
-
-        chatbox.scrollTop = chatbox.scrollHeight;
+        chatBox.innerHTML += `<div><strong>Bot:</strong> ${botReply}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
     } catch (error) {
-        console.error("Error:", error);
-        chatbox.innerHTML += `<p><strong>Bot:</strong> Terjadi kesalahan, coba lagi nanti.</p>`;
+        chatBox.innerHTML += `<div style="color:red;"><strong>Bot:</strong> Error, coba lagi!</div>`;
+    }
+}
+
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        sendMessage();
     }
 }
