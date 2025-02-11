@@ -1,4 +1,4 @@
-/* Menghilangkan scroll pada halaman */
+/* Background tetap ada, tapi chatbot tidak full screen */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #007BFF, #00E5FF); /* Biru ke Cyan */
@@ -8,9 +8,10 @@ body {
     height: 100vh;
     margin: 0;
     overflow: hidden; /* Mencegah scroll halaman */
+    padding: 20px; /* Memberi ruang agar tidak terlalu mepet */
 }
 
-/* Chat container dengan ukuran tetap dan padding yang lebih sedikit */
+/* Chat container dengan ukuran tetap dan padding lebih sedikit */
 .chat-container {
     width: 90vw; /* Lebih luas */
     max-width: 450px; /* Tidak terlalu besar di layar lebar */
