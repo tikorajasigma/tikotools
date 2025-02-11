@@ -1,4 +1,4 @@
-const API_KEY = "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"; // Ganti dengan API key milikmu
+const API_KEY = "33428e555143e8d4f9c3fecf00628a4e98bd57c6b45bf6b2c3bb201c87b6b5e7"; // Ganti dengan API key milikmu
 
 async function sendMessage() {
     const userInput = document.getElementById("userInput");
@@ -6,20 +6,20 @@ async function sendMessage() {
     const userMessage = userInput.value.trim();
 
     if (!userMessage) return;
-    
+
     // Tampilkan pesan pengguna
     chatbox.innerHTML += `<p><strong>Anda:</strong> ${userMessage}</p>`;
     userInput.value = "";
 
     try {
-        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        const response = await fetch("https://api.together.xyz/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${API_KEY}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                model: "deepseek/deepseek-r1:free",
+                model: "mistralai/mistral-7b-instruct", // Model gratis di Together AI
                 messages: [{ role: "user", content: userMessage }]
             })
         });
