@@ -10,16 +10,20 @@ body {
     overflow: hidden; /* Mencegah scroll halaman */
 }
 
-/* Container utama dengan ukuran tetap */
+/* Container utama dengan ukuran tetap dan benar-benar di tengah */
 .chat-container {
     width: 350px;
     height: 500px; /* Ukuran tetap */
     background: white;
-    border-radius: 10px;
+    border-radius: 5px; /* Corner radius 5px */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     overflow: hidden; /* Mencegah container berubah ukuran */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Memastikan pas di tengah */
 }
 
 /* Header */
@@ -29,9 +33,10 @@ h2 {
     color: white;
     padding: 10px;
     margin: 0;
+    border-radius: 5px 5px 0 0; /* Agar bagian atas tetap rounded */
 }
 
-/* Chat box harus memiliki ukuran tetap dan bisa di-scroll */
+/* Chat box dengan scroll */
 .chat-box {
     flex-grow: 1;
     padding: 15px;
@@ -68,6 +73,7 @@ h2 {
     background: white;
     border-top: 1px solid #ddd;
     height: 50px; /* Pastikan ukuran tetap */
+    border-radius: 0 0 5px 5px; /* Agar bagian bawah tetap rounded */
 }
 
 input {
