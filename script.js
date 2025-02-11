@@ -1,54 +1,39 @@
-const API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct";
+const API_KEY = "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"; // Ganti dengan API key milikmu
 
 async function sendMessage() {
-    let userInput = document.getElementById("user-input").value;
-    if (!userInput.trim()) return;
+    const userInput = document.getElementById("userInput");
+    const chatbox = document.getElementById("chatbox");
+    const userMessage = userInput.value.trim();
 
-    appendMessage("Anda", userInput);
-    document.getElementById("user-input").value = "";
-
-    updateDebug("Mengirim permintaan ke API...");
+    if (!userMessage) return;
+    
+    // Tampilkan pesan pengguna
+    chatbox.innerHTML += `<p><strong>Anda:</strong> ${userMessage}</p>`;
+    userInput.value = "";
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ inputs: userInput })
+            headers: {
+                "Authorization": `Bearer ${API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "deepseek/deepseek-r1:free",
+                messages: [{ role: "user", content: userMessage }]
+            })
         });
 
-        updateDebug(`Status HTTP: ${response.status}`);
-
-        if (!response.ok) {
-            throw new Error(`Server mengembalikan status: ${response.status}`);
-        }
-
         const data = await response.json();
-        updateDebug(`Respon API:\n${JSON.stringify(data, null, 2)}`);
 
-        if (Array.isArray(data) && data.length > 0) {
-            appendMessage("AI", data[0].generated_text || "Tidak ada respon.");
+        if (data.choices && data.choices.length > 0) {
+            const botReply = data.choices[0].message.content;
+            chatbox.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
         } else {
-            appendMessage("AI", "AI tidak memberikan respon yang valid.");
+            chatbox.innerHTML += `<p><strong>Bot:</strong> Maaf, saya tidak dapat merespons saat ini.</p>`;
         }
     } catch (error) {
-        console.error("Terjadi error:", error);
-        updateDebug(`Error: ${error.message}`);
-        appendMessage("AI", `Terjadi kesalahan: ${error.message}`);
+        console.error("Error:", error);
+        chatbox.innerHTML += `<p><strong>Bot:</strong> Terjadi kesalahan, coba lagi nanti.</p>`;
     }
-}
-
-function appendMessage(sender, message) {
-    let chatBox = document.getElementById("chat-box");
-    let msgDiv = document.createElement("div");
-    msgDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
-    chatBox.appendChild(msgDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function updateDebug(message) {
-    document.getElementById("debug-box").textContent = message;
-}
-
-function handleKeyPress(event) {
-    if (event.key === "Enter") sendMessage();
 }
