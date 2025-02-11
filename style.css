@@ -1,4 +1,4 @@
-/* Full screen tanpa background putih */
+/* Menghilangkan scroll pada halaman */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #007BFF, #00E5FF); /* Biru ke Cyan */
@@ -18,7 +18,7 @@ body {
     flex-direction: column;
 }
 
-/* Header */
+/* Header dengan jarak aman dari notch */
 h2 {
     text-align: center;
     color: white;
@@ -26,6 +26,7 @@ h2 {
     margin: 0;
     font-size: 20px;
     background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
+    padding-top: env(safe-area-inset-top, 15px); /* Menyesuaikan dengan notch HP */
 }
 
 /* Chat box dengan scroll */
@@ -58,11 +59,12 @@ h2 {
     align-self: flex-start;
 }
 
-/* Bagian input tetap di bawah */
+/* Bagian input tetap di bawah dengan jarak aman */
 .input-container {
     display: flex;
     padding: 15px;
     background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
+    padding-bottom: env(safe-area-inset-bottom, 15px); /* Menyesuaikan dengan navigasi HP */
 }
 
 /* Perbaikan warna teks input */
