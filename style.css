@@ -1,3 +1,4 @@
+/* Mencegah halaman bisa di-scroll */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -9,6 +10,7 @@ body {
     overflow: hidden; /* Mencegah scroll halaman */
 }
 
+/* Container utama dengan ukuran tetap */
 .chat-container {
     width: 350px;
     height: 500px; /* Ukuran tetap */
@@ -17,8 +19,10 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    overflow: hidden; /* Mencegah container berubah ukuran */
 }
 
+/* Header */
 h2 {
     text-align: center;
     background: #764ba2;
@@ -27,8 +31,9 @@ h2 {
     margin: 0;
 }
 
+/* Chat box harus memiliki ukuran tetap dan bisa di-scroll */
 .chat-box {
-    flex: 1;
+    flex-grow: 1;
     padding: 15px;
     overflow-y: auto; /* Bisa di-scroll jika penuh */
     display: flex;
@@ -36,6 +41,7 @@ h2 {
     max-height: 400px; /* Batasi tinggi agar UI tetap */
 }
 
+/* Gaya pesan */
 .message {
     padding: 8px 12px;
     border-radius: 5px;
@@ -55,11 +61,13 @@ h2 {
     align-self: flex-start;
 }
 
+/* Bagian input tetap di bawah */
 .input-container {
     display: flex;
     padding: 10px;
     background: white;
     border-top: 1px solid #ddd;
+    height: 50px; /* Pastikan ukuran tetap */
 }
 
 input {
