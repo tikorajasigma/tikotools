@@ -1,7 +1,7 @@
-/* Mencegah halaman bisa di-scroll */
+/* Full screen tanpa background putih */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #007BFF, #00E5FF); /* Biru ke Cyan */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,30 +10,22 @@ body {
     overflow: hidden; /* Mencegah scroll halaman */
 }
 
-/* Container utama dengan ukuran tetap dan benar-benar di tengah */
+/* Chat container sekarang memenuhi layar */
 .chat-container {
-    width: 350px;
-    height: 500px; /* Ukuran tetap */
-    background: white;
-    border-radius: 5px; /* Corner radius 5px */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Mencegah container berubah ukuran */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Memastikan pas di tengah */
 }
 
 /* Header */
 h2 {
     text-align: center;
-    background: #764ba2;
     color: white;
-    padding: 10px;
+    padding: 15px;
     margin: 0;
-    border-radius: 5px 5px 0 0; /* Agar bagian atas tetap rounded */
+    font-size: 20px;
+    background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
 }
 
 /* Chat box dengan scroll */
@@ -43,58 +35,63 @@ h2 {
     overflow-y: auto; /* Bisa di-scroll jika penuh */
     display: flex;
     flex-direction: column;
-    max-height: 400px; /* Batasi tinggi agar UI tetap */
 }
 
 /* Gaya pesan */
 .message {
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 10px;
     margin-bottom: 10px;
-    max-width: 80%;
+    max-width: 75%;
     word-wrap: break-word;
 }
 
 .user-message {
-    background: #667eea;
+    background: rgba(255, 255, 255, 0.3); /* Putih transparan */
     color: white;
     align-self: flex-end;
 }
 
 .bot-message {
-    background: #f1f1f1;
+    background: rgba(0, 0, 0, 0.2); /* Hitam transparan */
+    color: white;
     align-self: flex-start;
 }
 
 /* Bagian input tetap di bawah */
 .input-container {
     display: flex;
-    padding: 10px;
-    background: white;
-    border-top: 1px solid #ddd;
-    height: 50px; /* Pastikan ukuran tetap */
-    border-radius: 0 0 5px 5px; /* Agar bagian bawah tetap rounded */
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2); /* Transparan gelap */
 }
 
 input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: none;
     outline: none;
-    border-radius: 5px;
-    background: #f5f5f5;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    padding-left: 15px;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 button {
-    background: #764ba2;
+    background: rgba(255, 255, 255, 0.3);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px 20px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 25px;
     margin-left: 10px;
+    font-size: 16px;
 }
 
 button:hover {
-    background: #5a3a8c;
+    background: rgba(255, 255, 255, 0.5);
 }
