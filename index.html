@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat - Hugging Face (Mistral 7B)</title>
+    <title>Chatbot AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="chat-container">
-        <h2>AI Chat (Mistral 7B)</h2>
-        <div id="chat-box"></div>
-        <input type="text" id="user-input" placeholder="Ketik pesan..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendMessage()">Kirim</button>
-        <div class="debug-container">
-            <h3>Debugging</h3>
-            <pre id="debug-box">Menunggu log debugging...</pre>
+        <h2>Chatbot AI</h2>
+        <div id="chatbox"></div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Ketik pesan..." />
+            <button onclick="sendMessage()">Kirim</button>
         </div>
     </div>
     <script src="script.js"></script>
